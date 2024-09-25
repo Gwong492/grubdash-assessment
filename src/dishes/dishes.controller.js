@@ -136,5 +136,13 @@ module.exports = {
         create,
     ],
     read: [dishExisits, read],
-    update: [dishExisits, dishIdMatches, update],
+    update: [
+        dishExisits, 
+        dishIdMatches, 
+        namePropertyIsValid,
+        descriptionPropertyIsValid,
+        pricePropertyIsValid,
+        img_urlPropertyIsValid,
+        update
+    ],
 };
