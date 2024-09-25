@@ -13,7 +13,7 @@ const nextId = require("../utils/nextId");
 
 function deliverToPropertyIsValid(req, res, next) {
     const { deliverTo } = req.body.data;
-    if (deliverTo.length <= 0 || !deliverTo) {
+    if (deliverTo === "" || !deliverTo) {
         next({
             status: 400,
             message: "Order must include a deliverTo",
@@ -25,7 +25,7 @@ function deliverToPropertyIsValid(req, res, next) {
 
 function mobileNumberPropertyIsValid(req, res, next) {
     const { mobileNumber } = req.body.data;
-    if (mobileNumber.length <= 0 || !mobileNumber) {
+    if (mobileNumber === "" || !mobileNumber) {
         next({
             status: 400, 
             message: "Order must include a mobileNumber",
@@ -63,7 +63,7 @@ function statusPropertyIsValid(req, res, next) {
 function quantityPropertyIsValid(req, res, next) {
     const { dishes } = req.body.data;
     dishes.forEach((dish, index) => {
-        if (dish.quantity.length <= 0 || !Number.isInteger(dish.quantity) || dish.quantity <= 0 ) {
+        if (dish.quantity === "" || !Number.isInteger(dish.quantity) || dish.quantity <= 0 ) {
             next({
                 status: 400,
                 message: `Dish ${index} must have a quantity that is an integer greater than 0`,
@@ -94,8 +94,8 @@ function orderIdMatches(req, res, next) {
             next();
         } else {
             next({
-                status: 404,
-                message: `Order id not needed but if present must match order's current id`,
+                status: 400,
+                message: `id ${id}`,
             });
         };
     } else {

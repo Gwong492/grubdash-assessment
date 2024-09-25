@@ -13,9 +13,9 @@ const nextId = require("../utils/nextId");
 
 function namePropertyIsValid(req, res, next) {
     const { name } = req.body.data;
-    if (name.length <= 0 || !name) {
+    if (name === "" || !name) {
         next({
-            status: 404,
+            status: 400,
             message: "Dish must include a name"
         });
     } else {
@@ -25,7 +25,7 @@ function namePropertyIsValid(req, res, next) {
 
 function descriptionPropertyIsValid(req, res, next) {
     const { description } = req.body.data;
-    if (description.length <= 0 || !description) {
+    if (description === "" || !description) {
         next({
             status: 400,
             message: "Dish must include a description",
@@ -49,7 +49,7 @@ function pricePropertyIsValid(req, res, next) {
 
 function img_urlPropertyIsValid(req, res, next) {
     const { image_url } = req.body.data;
-    if (image_url.length <= 0 || !image_url) {
+    if (image_url === "" || !image_url) {
         next({
             status: 400,
             message: "Dish must include a image_url"
@@ -80,8 +80,8 @@ function dishIdMatches(req, res, next) {
             next();
         } else {
             next({
-                status: 404,
-                message: `Dish id not needed but if present must match dish's current id`,
+                status: 400,
+                message: `id ${id}`,
             });
         };
     } else {
